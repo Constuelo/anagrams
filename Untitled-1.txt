@@ -1,0 +1,39 @@
+# Given a words.txt file containing a newline-delimited list of dictionary
+# words, please implement the Anagrams class so that the get_anagrams() method
+# returns all anagrams from words.txt for a given word.
+#
+# Requirements:
+#   - Optimise the code for fast retrieval
+#   - Thread Safe implementation
+#   - Write more tests
+
+import unittest
+
+class Anagrams:
+
+    def __init__(self):
+        with open('lst.txt') as f:
+            words = [word.strip().lower() for word in f.readlines()]
+
+        print(type(words))
+        print(words)
+
+    def get_anagrams(self, word):
+        print(self.words)
+
+class TestAnagrams(unittest.TestCase):
+
+    def test_anagrams(self):
+        anagrams = Anagrams()
+        self.assertEquals(anagrams.get_anagrams('rac'), ['car', 'girl', 'tofu' 'rca'])
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+# word = sorted('rac')
+# alternatives = ['car', 'girl', 'tofu', 'rca']
+
+# for alt in alternatives:
+#     if word == sorted(alt):
+#         print alt
