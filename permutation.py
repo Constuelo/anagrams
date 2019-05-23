@@ -15,25 +15,10 @@ class Anagrams:
         with open('lst.txt') as f:
             words = [word.strip().lower() for word in f.readlines()]
 
-        print(type(words))
-        print(words)
-
     def get_anagrams(self, word):
-        print(self.words)
+        """ list comprehension / itertools permutation """
+        return [w for w in anagram(word) if w in self.words_list]
 
-class TestAnagrams(unittest.TestCase):
-
-    def test_anagrams(self):
-        anagrams = Anagrams()
-        self.assertEquals(anagrams.get_anagrams('rac'), ['car', 'girl', 'tofu' 'rca'])
-
-
-if __name__ == '__main__':
-    unittest.main()
-
-# word = sorted('rac')
-# alternatives = ['car', 'girl', 'tofu', 'rca']
-
-# for alt in alternatives:
-#     if word == sorted(alt):
-#         print alt
+def anagram(word):
+    for w in itertools.permutations(word):
+        yield ''.join(w)
