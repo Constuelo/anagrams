@@ -3,6 +3,8 @@ from operator import itemgetter
 from collections import Counter, defaultdict
 import unittest
 import logging
+import time
+
 
 
 class WordNotFoundError(KeyError):
@@ -128,4 +130,6 @@ class TestAnagrams(unittest.TestCase):
             )
 
 if __name__ == '__main__':
-    unittest.main()
+    # unittest.main()
+    anagram = Anagrams()
+    print(anagram.get_anagrams('petal'))
