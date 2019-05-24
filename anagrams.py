@@ -8,13 +8,13 @@
 #   - Write more tests
 
 import unittest
-import time
 
 """
 This code is written in python 3.7.2
 
 - DeprecationWarnings ignored
 - ResourceWarnings ignored
+- with open() to auto close file after read
 
 - Optimise results (anagrams.get_anagrams('petals'))
     - sorted() = ~0.06-0.08 secs
@@ -29,14 +29,9 @@ This code is written in python 3.7.2
 class Anagrams:
 
     def __init__(self):
-        self.words = open('words.txt').readlines()
-        self.words_list = self.words_to_list()
-
-    def words_to_list(self):
-        """ Creates a copies of self.words and strips the newlines
-            :rtype: list
-        """
-        return [word.strip('\n') for word in self.words]
+        with open('words.txt') as reader:
+            self.words = reader.readlines()
+        self.words_list = [word.strip('\n') for word in self.words]
 
     def get_anagrams(self, word):
         """ Returns all anagrams from self.words_list for a given word.
@@ -48,7 +43,6 @@ class Anagrams:
             return [a for a in self.words_list if sorted(word.lower()) == sorted(a.lower())]
         else:
             print(f'{word} is not a str')
-
 
 class TestAnagrams(unittest.TestCase):
 
